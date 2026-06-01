@@ -4,34 +4,40 @@ import { motion } from "framer-motion";
 /* ─── Service data ───────────────────────────────────────────── */
 const SERVICES = [
   {
-    title: "Cobertura Jornalística Municipal",
-    desc:  "Equipe em campo para cobertura completa dos acontecimentos da sua cidade com agilidade e precisão.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353142/cobertura_jornalista_municipal_imagem_eywfut.png",
+    title:   "Cobertura Jornalística Municipal",
+    desc:    "Equipe em campo para cobertura completa dos acontecimentos da sua cidade com agilidade e precisão.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353142/cobertura_jornalista_municipal_imagem_eywfut.png",
+    objPos:  "center center",
   },
   {
-    title: "Publicação no Portal de Notícias",
-    desc:  "Conteúdos publicados no setetvnews.com.br com alcance mundial e atualização em tempo real.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353046/publicação_no_portal_de_notícias_imagem_jjh7jd.png",
+    title:   "Publicação no Portal de Notícias",
+    desc:    "Conteúdos publicados no setetvnews.com.br com alcance mundial e atualização em tempo real.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353046/publicação_no_portal_de_notícias_imagem_jjh7jd.png",
+    objPos:  "center top",
   },
   {
-    title: "Produção de Conteúdo para Redes Sociais",
-    desc:  "Criação de conteúdo estratégico para Instagram, YouTube e demais plataformas digitais.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353112/producao_de_conteudo_paras_redes_sociais_imagem_vbgxtn.png",
+    title:   "Produção de Conteúdo para Redes Sociais",
+    desc:    "Criação de conteúdo estratégico para Instagram, YouTube e demais plataformas digitais.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353112/producao_de_conteudo_paras_redes_sociais_imagem_vbgxtn.png",
+    objPos:  "center top",
   },
   {
-    title: "Assessoria de Imprensa Digital",
-    desc:  "Gestão profissional da comunicação institucional com cobertura jornalística e presença digital.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780352963/assesoria_de_imprensa_digital_imagem_iqqzsh.png",
+    title:   "Assessoria de Imprensa Digital",
+    desc:    "Gestão profissional da comunicação institucional com cobertura jornalística e presença digital.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780352963/assesoria_de_imprensa_digital_imagem_iqqzsh.png",
+    objPos:  "center center",
   },
   {
-    title: "Transmissões ao Vivo",
-    desc:  "Cobertura em tempo real com transmissão simultânea no YouTube, Instagram e demais plataformas.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353019/transmissão_ao_vivo_imagem_xie4vu.png",
+    title:   "Transmissões ao Vivo",
+    desc:    "Cobertura em tempo real com transmissão simultânea no YouTube, Instagram e demais plataformas.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353019/transmissão_ao_vivo_imagem_xie4vu.png",
+    objPos:  "center center",
   },
   {
-    title: "Cobertura de Eventos Oficiais",
-    desc:  "Presença jornalística profissional em solenidades, inaugurações e atos da administração pública.",
-    img:   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353170/cobertura_de_eventos_municipais_foto_fsuc7d.png",
+    title:   "Cobertura de Eventos Oficiais",
+    desc:    "Presença jornalística profissional em solenidades, inaugurações e atos da administração pública.",
+    img:     "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780353170/cobertura_de_eventos_municipais_foto_fsuc7d.png",
+    objPos:  "center top",
   },
 ];
 
@@ -46,20 +52,19 @@ function ServiceCard({ s, i }: { s: typeof SERVICES[0]; i: number }) {
       transition={{ duration: 0.55, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Photo */}
-      <img
-        src={s.img}
-        alt={s.title}
-        width="100%"
-        height="220"
-        style={{
-          width: "100%",
-          height: "220px",
-          objectFit: "cover",
-          borderRadius: "12px 12px 0 0",
-          display: "block",
-          flexShrink: 0,
-        }}
-      />
+      <div className="sv-img">
+        <img
+          src={s.img}
+          alt={s.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: s.objPos,
+            display: "block",
+          }}
+        />
+      </div>
 
       {/* Text */}
       <div style={{ padding: "20px 24px 24px" }}>
@@ -185,6 +190,13 @@ export default function ServicosNew() {
           gap: 20px;
         }
 
+        /* Image container */
+        .sv-img {
+          height: 240px;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+
         /* Card base */
         .sv-card {
           background: rgba(255,255,255,0.03);
@@ -216,6 +228,9 @@ export default function ServicosNew() {
         @media (max-width: 600px) {
           .sv-grid {
             grid-template-columns: 1fr;
+          }
+          .sv-img {
+            height: 200px;
           }
           #servicos { padding: 64px 0 !important; }
           #servicos > div { padding: 0 22px !important; }
