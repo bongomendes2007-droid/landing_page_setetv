@@ -38,6 +38,11 @@
 }
 .hidden { display: none; }
 
+/* ─── Navbar logo: 40px on mobile ────────────────────── */
+@media (max-width: 768px) {
+  .navbar-logo { height: 40px !important; }
+}
+
 /* ─── Global resets ───────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
