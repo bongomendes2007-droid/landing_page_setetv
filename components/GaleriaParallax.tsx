@@ -16,21 +16,13 @@ const images = [
 ]
 
 const columns = [
-  { imgs: [images[0], images[1]], topOffset: "-45%", speedMultiplier: 2 },
-  { imgs: [images[2], images[3]], topOffset: "-95%", speedMultiplier: 3.3 },
-  { imgs: [images[4], images[5]], topOffset: "-45%", speedMultiplier: 1.25 },
-  { imgs: [images[6], images[7]], topOffset: "-75%", speedMultiplier: 3 },
+  { imgs: [images[0], images[1]], topOffset: "-45%" },
+  { imgs: [images[2], images[3]], topOffset: "-95%" },
+  { imgs: [images[4], images[5]], topOffset: "-45%" },
+  { imgs: [images[6], images[7]], topOffset: "-75%" },
 ]
 
-function Column({
-  imgs,
-  topOffset,
-  y,
-}: {
-  imgs: string[]
-  topOffset: string
-  y: MotionValue<number>
-}) {
+function Column({ imgs, topOffset, y }: { imgs: string[]; topOffset: string; y: MotionValue<number> }) {
   return (
     <motion.div
       style={{
@@ -46,24 +38,12 @@ function Column({
       {imgs.map((src, i) => (
         <div
           key={i}
-          style={{
-            width: "100%",
-            aspectRatio: "3/4",
-            borderRadius: 12,
-            overflow: "hidden",
-            flexShrink: 0,
-          }}
+          style={{ width: "100%", aspectRatio: "3/4", borderRadius: 12, overflow: "hidden", flexShrink: 0 }}
         >
           <img
             src={src}
             alt="galeria sete tv"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "12px",
-              display: "block",
-            }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         </div>
       ))}
@@ -71,15 +51,54 @@ function Column({
   )
 }
 
+const sectionHeader = (
+  <div
+    style={{
+      textAlign: "center",
+      paddingTop: 80,
+      paddingBottom: 48,
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+    }}
+  >
+    <p
+      style={{
+        fontSize: 12,
+        color: "#8B5CF6",
+        letterSpacing: "0.15em",
+        textTransform: "uppercase",
+        marginBottom: 16,
+        fontWeight: 600,
+      }}
+    >
+      GALERIA
+    </p>
+    <h2
+      style={{
+        fontSize: "clamp(28px, 5vw, 42px)",
+        fontWeight: 700,
+        color: "#ffffff",
+        margin: 0,
+      }}
+    >
+      Momentos que marcaram o Piauí
+    </h2>
+  </div>
+)
+
 export default function GaleriaParallax() {
   const gallery = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const update = () => setHeight(window.innerHeight)
-    update()
-    window.addEventListener("resize", update)
-    return () => window.removeEventListener("resize", update)
+    const check = () => {
+      setHeight(window.innerHeight)
+      setIsMobile(window.innerWidth < 768)
+    }
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
   }, [])
 
   useEffect(() => {
@@ -106,43 +125,42 @@ export default function GaleriaParallax() {
 
   const yValues = [y1, y2, y3, y4]
 
+  if (isMobile) {
+    return (
+      <section style={{ background: "#0A0A0F" }}>
+        {sectionHeader}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 8,
+            padding: 16,
+            background: "#0A0A0F",
+          }}
+        >
+          {images.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt="galeria sete tv"
+              style={{
+                width: "100%",
+                aspectRatio: "1 / 1",
+                objectFit: "cover",
+                borderRadius: 10,
+                display: "block",
+              }}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section style={{ background: "#0A0A0F" }}>
-      {/* Header */}
-      <div
-        style={{
-          textAlign: "center",
-          paddingTop: 80,
-          paddingBottom: 48,
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
-        }}
-      >
-        <p
-          style={{
-            fontSize: 12,
-            color: "#8B5CF6",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            marginBottom: 16,
-            fontWeight: 600,
-          }}
-        >
-          GALERIA
-        </p>
-        <h2
-          style={{
-            fontSize: "clamp(28px, 5vw, 42px)",
-            fontWeight: 700,
-            color: "#ffffff",
-            margin: 0,
-          }}
-        >
-          Momentos que marcaram o Piauí
-        </h2>
-      </div>
+      {sectionHeader}
 
-      {/* Galeria parallax */}
       <div
         ref={gallery}
         style={{
@@ -155,12 +173,7 @@ export default function GaleriaParallax() {
         }}
       >
         {columns.map((col, i) => (
-          <Column
-            key={i}
-            imgs={col.imgs}
-            topOffset={col.topOffset}
-            y={yValues[i]}
-          />
+          <Column key={i} imgs={col.imgs} topOffset={col.topOffset} y={yValues[i]} />
         ))}
       </div>
     </section>
