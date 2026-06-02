@@ -1,8 +1,9 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { useScroll, useTransform, motion } from "framer-motion"
+import { useScroll, useTransform, motion, type MotionValue } from "framer-motion"
 import Image from "next/image"
+import Lenis from "lenis"
 
 const images = [
   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425528/e4064ae8-13ce-4069-a52f-6a1d002c419e_wo9rrl.png",
@@ -29,7 +30,7 @@ function Column({
 }: {
   imgs: string[]
   topOffset: string
-  y: ReturnType<typeof useTransform>
+  y: MotionValue<number>
 }) {
   return (
     <motion.div
@@ -80,23 +81,14 @@ export default function GaleriaParallax() {
   }, [])
 
   useEffect(() => {
-    let lenis: import("lenis").default | null = null
-
-    const initLenis = async () => {
-      const Lenis = (await import("lenis")).default
-      // Reutiliza instância global se já existir
-      if ((window as Window & { __lenis?: import("lenis").default }).__lenis) return
-      lenis = new Lenis({ autoRaf: true })
-      ;(window as Window & { __lenis?: import("lenis").default }).__lenis = lenis
-    }
-
-    initLenis()
-
+    type W = Window & { __lenis?: Lenis }
+    const w = window as W
+    if (w.__lenis) return
+    const lenis = new Lenis({ autoRaf: true })
+    w.__lenis = lenis
     return () => {
-      if (lenis) {
-        lenis.destroy()
-        delete (window as Window & { __lenis?: import("lenis").default }).__lenis
-      }
+      lenis.destroy()
+      delete w.__lenis
     }
   }, [])
 
