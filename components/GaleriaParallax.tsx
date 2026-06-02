@@ -2,28 +2,94 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-/* ─── Gallery images ─────────────────────────────────────────── */
-/* Replace src values with your actual gallery photo URLs.         */
+/* ─── Images ─────────────────────────────────────────────────── */
 const IMAGES = [
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911660/James_Almeida_tvzehb.png",               alt: "Cobertura 1" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911660/Ilanna_Lima_mroszt.png",                 alt: "Cobertura 2" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911660/Lorena_Morais_vkcxri.png",               alt: "Cobertura 3" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911660/Bruna_Le%C3%A3o_q4ckxp.png",            alt: "Cobertura 4" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Adriano_Magno_sqldqc.png",               alt: "Cobertura 5" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Rafael_S%C3%A9rgio_ybfj2f.png",         alt: "Cobertura 6" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Yasmin_Silva_mjob73.png",                alt: "Cobertura 7" },
-  { src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Amadeu_Bruno_shxjsz.png",               alt: "Cobertura 8" },
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425528/e4064ae8-13ce-4069-a52f-6a1d002c419e_wo9rrl.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425616/cf25d449-75ec-4b2f-8988-d5ede2b0f7f9_qmyeb9.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425730/b7b93bee-f5bb-482e-aa7f-02b717605365_zrjwdo.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425836/d5632784-8545-4f84-b8d2-9ef4255ab28e_zerkch.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780425881/27c6c362-9880-43c5-8b18-31252eac2738_cwszgj.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426033/a574e137-d8f1-48a1-8b9e-eac49140af71_ypasax.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426089/957c797f-ca0d-4de3-8f85-0e5444a97fd1_jm2xzn.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426177/0b66ffda-668f-4f20-8003-da7839f18cb0_tkdpgs.png",
 ];
 
-const IMG_STYLE: React.CSSProperties = {
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  display: "block",
-  borderRadius: "10px",
-};
+/* ─── Desktop: 4-column parallax ────────────────────────────── */
+function DesktopParallax() {
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(900);
 
-/* ─── Mobile: two-column parallax ───────────────────────────── */
+  useEffect(() => {
+    setHeight(window.innerHeight);
+    const onResize = () => setHeight(window.innerHeight);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: galleryRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, height * 2]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+
+  const cols = [
+    { images: [IMAGES[0], IMAGES[1]], y: y1, marginTop: "-45%" },
+    { images: [IMAGES[2], IMAGES[3]], y: y2, marginTop: "-95%" },
+    { images: [IMAGES[4], IMAGES[5]], y: y3, marginTop: "-45%" },
+    { images: [IMAGES[6], IMAGES[7]], y: y4, marginTop: "-75%" },
+  ];
+
+  return (
+    <div
+      ref={galleryRef}
+      style={{
+        height: "175vh",
+        display: "flex",
+        gap: "2vw",
+        padding: "2vw",
+        overflow: "hidden",
+        background: "#0A0A0F",
+      }}
+    >
+      {cols.map((col, ci) => (
+        <motion.div
+          key={ci}
+          style={{ y: col.y, flex: 1, marginTop: col.marginTop }}
+        >
+          {col.images.map((src, ii) => (
+            <div
+              key={ii}
+              style={{
+                width: "100%",
+                aspectRatio: "3/4",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginBottom: "2vw",
+              }}
+            >
+              <img
+                src={src}
+                alt={`Galeria ${ci * 2 + ii + 1}`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </div>
+          ))}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Mobile: 2-column parallax (unchanged) ─────────────────── */
 function MobileParallax() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [vh, setVh] = useState(800);
@@ -40,75 +106,39 @@ function MobileParallax() {
     offset: ["start end", "end start"],
   });
 
-  // Column 1: slower (80 % of vh travel)
   const y1 = useTransform(scrollYProgress, [0, 1], [0, vh * 0.8]);
-  // Column 2: faster (120 % of vh travel)
   const y2 = useTransform(scrollYProgress, [0, 1], [0, vh * 1.2]);
+
+  const imgStyle: React.CSSProperties = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    display: "block",
+    borderRadius: "10px",
+  };
 
   return (
     <div
       ref={galleryRef}
-      style={{
-        height: "120vh",
-        display: "flex",
-        gap: "8px",
-        padding: "8px",
-        overflow: "hidden",
-      }}
+      style={{ height: "120vh", display: "flex", gap: "8px", padding: "8px", overflow: "hidden" }}
     >
-      {/* Column 1 — starts 20 % above, scrolls at 0.8× speed */}
-      <motion.div
-        style={{ y: y1, flex: 1, marginTop: "-20%" }}
-      >
-        {IMAGES.slice(0, 4).map((img, i) => (
-          <div
-            key={i}
-            style={{ aspectRatio: "3/4", marginBottom: "8px" }}
-          >
-            <img src={img.src} alt={img.alt} style={IMG_STYLE} />
+      {/* Column 1 — slower */}
+      <motion.div style={{ y: y1, flex: 1, marginTop: "-20%" }}>
+        {IMAGES.slice(0, 4).map((src, i) => (
+          <div key={i} style={{ aspectRatio: "3/4", marginBottom: "8px" }}>
+            <img src={src} alt={`Galeria ${i + 1}`} style={imgStyle} />
           </div>
         ))}
       </motion.div>
 
-      {/* Column 2 — starts 40 % above, scrolls at 1.2× speed */}
-      <motion.div
-        style={{ y: y2, flex: 1, marginTop: "-40%" }}
-      >
-        {IMAGES.slice(4, 8).map((img, i) => (
-          <div
-            key={i}
-            style={{ aspectRatio: "3/4", marginBottom: "8px" }}
-          >
-            <img src={img.src} alt={img.alt} style={IMG_STYLE} />
+      {/* Column 2 — faster */}
+      <motion.div style={{ y: y2, flex: 1, marginTop: "-40%" }}>
+        {IMAGES.slice(4, 8).map((src, i) => (
+          <div key={i} style={{ aspectRatio: "3/4", marginBottom: "8px" }}>
+            <img src={src} alt={`Galeria ${i + 5}`} style={imgStyle} />
           </div>
         ))}
       </motion.div>
-    </div>
-  );
-}
-
-/* ─── Desktop: static 4-column grid ─────────────────────────── */
-function DesktopGrid() {
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "12px",
-      }}
-    >
-      {IMAGES.map((img, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          style={{ aspectRatio: "3/4", borderRadius: "12px", overflow: "hidden" }}
-        >
-          <img src={img.src} alt={img.alt} style={IMG_STYLE} />
-        </motion.div>
-      ))}
     </div>
   );
 }
@@ -126,55 +156,8 @@ export default function GaleriaParallax() {
   }, []);
 
   return (
-    <section
-      id="galeria"
-      style={{
-        background: "#0a0a0a",
-        padding: isMobile ? "0" : "80px 0",
-        overflow: "hidden",
-      }}
-    >
-      {!isMobile && (
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 48px" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            style={{ marginBottom: 48 }}
-          >
-            <span
-              style={{
-                fontFamily: "Inter, system-ui, sans-serif",
-                fontSize: "11px",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#8B5CF6",
-                display: "block",
-                marginBottom: "12px",
-              }}
-            >
-              Galeria
-            </span>
-            <h2
-              style={{
-                fontFamily: "Inter, system-ui, sans-serif",
-                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.04em",
-                color: "#fff",
-                lineHeight: 1.1,
-              }}
-            >
-              Nossa cobertura em imagens
-            </h2>
-          </motion.div>
-          <DesktopGrid />
-        </div>
-      )}
-
-      {isMobile && <MobileParallax />}
+    <section id="galeria" style={{ overflow: "hidden" }}>
+      {isMobile ? <MobileParallax /> : <DesktopParallax />}
     </section>
   );
 }
