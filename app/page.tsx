@@ -7,7 +7,7 @@ import DepoimentosNew   from "@/components/DepoimentosNew";
 import EquipeNew        from "@/components/EquipeNew";
 import ProjetosNew      from "@/components/ProjetosNew";
 import AudienciaNew     from "@/components/AudienciaNew";
-import PrecosNew        from "@/components/PrecosNew";
+import GaleriaParallax  from "@/components/GaleriaParallax";
 import ContatoNew       from "@/components/ContatoNew";
 import FooterNew        from "@/components/FooterNew";
 
@@ -23,7 +23,7 @@ export default function Home() {
       <EquipeNew />
       <ProjetosNew />
       <AudienciaNew />
-      <PrecosNew />
+      <GaleriaParallax />
       <ContatoNew />
       <FooterNew />
     </main>
