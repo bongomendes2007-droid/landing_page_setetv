@@ -73,16 +73,12 @@ export default function EquipeNew() {
           className="team-swiper">
           {team.map((m,i) => (
             <SwiperSlide key={i} style={{ width:260 }}>
-              <div style={{ position:"relative", borderRadius:18, overflow:"hidden", aspectRatio:"3/4",
+              <div style={{ borderRadius:18, overflow:"hidden", aspectRatio:"3/4",
                             border:"1px solid rgba(255,255,255,0.08)",
-                            boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)" }}>
+                            boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)",
+                            background:"#0a0a0a" }}>
                 <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
-                       objectFit:"cover", objectPosition:"top center", display:"block" }}/>
-                <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 16px",
-                              background:"linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 100%)" }}>
-                  <div style={{ fontFamily:"Inter", fontSize:14, fontWeight:700, color:"#fff" }}>{m.name}</div>
-                  <div style={{ fontFamily:"Inter", fontSize:11, color:"rgba(255,255,255,0.5)", marginTop:2 }}>{m.role}</div>
-                </div>
+                       objectFit:"contain", objectPosition:"center center", display:"block" }}/>
               </div>
             </SwiperSlide>
           ))}
