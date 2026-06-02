@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useState } from "react"
 import { useScroll, useTransform, motion, type MotionValue } from "framer-motion"
-import Image from "next/image"
 import Lenis from "lenis"
 
 const images = [
@@ -48,7 +47,6 @@ function Column({
         <div
           key={i}
           style={{
-            position: "relative",
             width: "100%",
             aspectRatio: "3/4",
             borderRadius: 12,
@@ -56,12 +54,16 @@ function Column({
             flexShrink: 0,
           }}
         >
-          <Image
+          <img
             src={src}
-            alt={`Galeria imagem ${i + 1}`}
-            fill
-            sizes="25vw"
-            style={{ objectFit: "cover" }}
+            alt="galeria sete tv"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "12px",
+              display: "block",
+            }}
           />
         </div>
       ))}

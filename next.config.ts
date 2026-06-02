@@ -5,6 +5,18 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "dd5f5j2ni.cloudinary.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
