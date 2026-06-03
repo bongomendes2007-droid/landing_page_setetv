@@ -65,13 +65,13 @@ export default function EquipeNew() {
         ))}
         <Swiper modules={[EffectCoverflow,Pagination,Navigation,Autoplay]}
           effect="coverflow" grabCursor centeredSlides slidesPerView="auto" loop
-          coverflowEffect={{ rotate:24, stretch:0, depth:130, modifier:1, slideShadows:true }}
+          coverflowEffect={{ rotate:24, stretch:-20, depth:130, modifier:1, slideShadows:true }}
           pagination={{ clickable:true }}
           navigation={{ nextEl:".swiper-next-t", prevEl:".swiper-prev-t" }}
           autoplay={{ delay:3200, disableOnInteraction:true }}
           className="team-swiper">
           {team.map((m,i) => (
-            <SwiperSlide key={i} style={{ width:260 }}>
+            <SwiperSlide key={i} style={{ width:200 }}>
               <div style={{ borderRadius:18, overflow:"hidden",
                             border:"1px solid rgba(255,255,255,0.08)",
                             boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)",
@@ -82,14 +82,14 @@ export default function EquipeNew() {
                          objectFit:"cover", objectPosition:"center top", display:"block",
                          padding:0, margin:0 }}/>
                 </div>
-                <div style={{ padding:"12px 16px 16px", minHeight:80,
-                              display:"flex", flexDirection:"column", gap:4 }}>
-                  <p style={{ fontSize:14, fontWeight:700, color:"#FFFFFF",
+                <div style={{ padding:"10px 12px", minHeight:64,
+                              display:"flex", flexDirection:"column", gap:3 }}>
+                  <p style={{ fontSize:13, fontWeight:700, color:"#FFFFFF",
                                textTransform:"uppercase", whiteSpace:"nowrap",
                                overflow:"hidden", textOverflow:"ellipsis", margin:0 }}>
                     {m.name}
                   </p>
-                  <p style={{ fontSize:12, color:"rgba(255,255,255,0.7)",
+                  <p style={{ fontSize:11, color:"rgba(255,255,255,0.7)",
                                lineHeight:1.4, whiteSpace:"normal", margin:0 }}>
                     {m.role}
                   </p>
