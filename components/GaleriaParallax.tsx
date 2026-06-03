@@ -12,6 +12,9 @@ const IMAGES = [
   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426033/a574e137-d8f1-48a1-8b9e-eac49140af71_ypasax.png",
   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426089/957c797f-ca0d-4de3-8f85-0e5444a97fd1_jm2xzn.png",
   "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780426177/0b66ffda-668f-4f20-8003-da7839f18cb0_tkdpgs.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780509832/521c6e73-784a-47e0-b4c8-e661e0882fae_jxaknz.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780510578/04739c64-4eb2-478f-88e7-30372f69e3b1_jmlaow.png",
+  "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780510668/06ec6add-ec3b-401e-92f2-dd592828fef3_nn3jiv.png",
 ];
 
 /* ─── Desktop: 4-column parallax ────────────────────────────── */
@@ -37,10 +40,10 @@ function DesktopParallax() {
   const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
 
   const cols = [
-    { images: [IMAGES[0], IMAGES[1]], y: y1, marginTop: "-45%" },
-    { images: [IMAGES[2], IMAGES[3]], y: y2, marginTop: "-95%" },
-    { images: [IMAGES[4], IMAGES[5]], y: y3, marginTop: "-45%" },
-    { images: [IMAGES[6], IMAGES[7]], y: y4, marginTop: "-75%" },
+    { images: [IMAGES[0], IMAGES[1], IMAGES[2]], y: y1, marginTop: "-45%" },
+    { images: [IMAGES[3], IMAGES[4], IMAGES[5]], y: y2, marginTop: "-95%" },
+    { images: [IMAGES[6], IMAGES[7], IMAGES[8]], y: y3, marginTop: "-45%" },
+    { images: [IMAGES[9], IMAGES[10], IMAGES[7]], y: y4, marginTop: "-75%" },
   ];
 
   return (
@@ -122,20 +125,20 @@ function MobileParallax() {
       ref={galleryRef}
       style={{ height: "120vh", display: "flex", gap: "8px", padding: "8px", overflow: "hidden" }}
     >
-      {/* Column 1 — slower */}
+      {/* Column 1 — slower: images[0, 2, 4, 6, 8, 10] */}
       <motion.div style={{ y: y1, flex: 1, marginTop: "-20%" }}>
-        {IMAGES.slice(0, 4).map((src, i) => (
+        {[0, 2, 4, 6, 8, 10].map((idx, i) => (
           <div key={i} style={{ aspectRatio: "3/4", marginBottom: "8px" }}>
-            <img src={src} alt={`Galeria ${i + 1}`} style={imgStyle} />
+            <img src={IMAGES[idx]} alt={`Galeria ${idx + 1}`} style={imgStyle} />
           </div>
         ))}
       </motion.div>
 
-      {/* Column 2 — faster */}
+      {/* Column 2 — faster: images[1, 3, 5, 7, 9] */}
       <motion.div style={{ y: y2, flex: 1, marginTop: "-40%" }}>
-        {IMAGES.slice(4, 8).map((src, i) => (
+        {[1, 3, 5, 7, 9].map((idx, i) => (
           <div key={i} style={{ aspectRatio: "3/4", marginBottom: "8px" }}>
-            <img src={src} alt={`Galeria ${i + 5}`} style={imgStyle} />
+            <img src={IMAGES[idx]} alt={`Galeria ${idx + 1}`} style={imgStyle} />
           </div>
         ))}
       </motion.div>
