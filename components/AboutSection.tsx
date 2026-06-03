@@ -38,12 +38,12 @@ const CARDS = [
     icon: (
       <img
         src="https://res.cloudinary.com/dnth1inmv/image/upload/v1780281314/beb2c698-183a-4ddd-a615-5947ac7df917_zd4lpz.png"
-        alt="Podcast 7Cast"
+        alt="Sete Cast"
         style={ICON_STYLE}
       />
     ),
     tag: "Conexão 7Cast",
-    title: "Podcast 7Cast",
+    title: "Sete Cast",
     desc: "Canal de podcast com debates, entrevistas e análises aprofundadas dos principais temas.",
   },
 ];

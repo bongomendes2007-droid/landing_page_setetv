@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const platforms = [
   { num:"01", icon:"📺", name:"TV Digital",         sub:"@SETETV.OFICIAL",   stat:"423K", label:"Views YouTube",   desc:"Canal no YouTube com transmissões ao vivo, coberturas jornalísticas e conteúdo sob demanda." },
   { num:"02", icon:"📰", name:"Portal de Notícias", sub:"SETETVNEWS.COM.BR",  stat:"24/7", label:"Online",          desc:"Site com alcance mundial — cobertura regional, nacional e internacional em tempo real." },
-  { num:"03", icon:"🎙", name:"Podcast 7Cast",      sub:"CONEXÃO 7CAST",      stat:"302K", label:"Views Instagram", desc:"Canal de podcast com debates, entrevistas e análises aprofundadas dos principais temas." },
+  { num:"03", icon:"🎙", name:"Sete Cast",           sub:"CONEXÃO 7CAST",      stat:"302K", label:"Views Instagram", desc:"Canal de podcast com debates, entrevistas e análises aprofundadas dos principais temas." },
 ];
 
 function FadeIn({ children, delay=0, x=0, y=24 }: { children:React.ReactNode; delay?:number; x?:number; y?:number }) {

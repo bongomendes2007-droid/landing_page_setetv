@@ -5,7 +5,7 @@ const cols = [
   { title:"Plataformas", links:[
     { label:"TV Digital",        href:"https://youtube.com/@setetv.oficial"    },
     { label:"Portal de Notícias",href:"https://www.setetvnews.com.br"          },
-    { label:"Podcast 7Cast",     href:"#"                                      },
+    { label:"Sete Cast",          href:"#"                                      },
     { label:"Instagram",         href:"https://instagram.com/setetvnews"       },
     { label:"YouTube",           href:"https://youtube.com/@setetv.oficial"    },
   ]},
