@@ -65,31 +65,27 @@ export default function EquipeNew() {
         ))}
         <Swiper modules={[EffectCoverflow,Pagination,Navigation,Autoplay]}
           effect="coverflow" grabCursor centeredSlides slidesPerView="auto" loop
-          coverflowEffect={{ rotate:24, stretch:-20, depth:130, modifier:1, slideShadows:true }}
+          coverflowEffect={{ rotate:30, stretch:-60, depth:150, modifier:1, slideShadows:true }}
           pagination={{ clickable:true }}
           navigation={{ nextEl:".swiper-next-t", prevEl:".swiper-prev-t" }}
           autoplay={{ delay:3200, disableOnInteraction:true }}
           className="team-swiper">
           {team.map((m,i) => (
             <SwiperSlide key={i} style={{ width:200 }}>
-              <div style={{ borderRadius:18, overflow:"hidden",
+              <div style={{ borderRadius:16, overflow:"hidden", aspectRatio:"3/4",
+                            position:"relative",
                             border:"1px solid rgba(255,255,255,0.08)",
-                            boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)",
-                            background:"#1a1a2e",
-                            display:"flex", flexDirection:"column" }}>
-                <div style={{ aspectRatio:"3/4", overflow:"hidden", flexShrink:0 }}>
-                  <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
-                         objectFit:"cover", objectPosition:"center top", display:"block",
-                         padding:0, margin:0 }}/>
-                </div>
-                <div style={{ padding:"10px 12px", minHeight:64,
-                              display:"flex", flexDirection:"column", gap:3 }}>
+                            boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)" }}>
+                <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
+                       objectFit:"cover", objectPosition:"center top", display:"block" }}/>
+                <div style={{ position:"absolute", bottom:0, left:0, width:"100%",
+                              background:"rgba(88,28,135,0.9)", padding:"10px 12px" }}>
                   <p style={{ fontSize:13, fontWeight:700, color:"#FFFFFF",
                                textTransform:"uppercase", whiteSpace:"nowrap",
                                overflow:"hidden", textOverflow:"ellipsis", margin:0 }}>
                     {m.name}
                   </p>
-                  <p style={{ fontSize:11, color:"rgba(255,255,255,0.7)",
+                  <p style={{ fontSize:11, color:"rgba(255,255,255,0.85)",
                                lineHeight:1.4, whiteSpace:"normal", margin:0 }}>
                     {m.role}
                   </p>
