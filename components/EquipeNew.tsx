@@ -18,8 +18,7 @@ const team = [
   { name:"Luis Costa",     role:"Administrador",            src:"https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Luis_Costa_h7rdyk.png" },
   { name:"Lucas",          role:"Redator Jornalístico",     src:"https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Lucas_hxy1bt.png" },
   { name:"Yasmin Silva",   role:"Redatora Jornalística",    src:"https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Yasmin_Silva_mjob73.png" },
-  { name:"Adriano Magno",  role:"Jornalista Repórter",      src:"https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Adriano_Magno_sqldqc.png" },
-  { name:"Amadeu Bruno",   role:"Direção Criativa",         src:"https://res.cloudinary.com/dnth1inmv/image/upload/v1779911659/Amadeu_Bruno_shxjsz.png" },
+  { name:"Amadeu Bruno",   role:"Direção Criativa de Identidade Visual Sete TV News", src:"https://res.cloudinary.com/dd5f5j2ni/image/upload/v1780511866/Amadeu_Bruno.jpg_sblvv9.jpg" },
 ];
 
 export default function EquipeNew() {
