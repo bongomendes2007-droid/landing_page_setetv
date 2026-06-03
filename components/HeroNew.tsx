@@ -24,7 +24,7 @@ const DOCK_ICONS = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/setetv.oficial",
+    href: "https://www.instagram.com/setetvnews/",
     target: "_blank" as const,
     rel: "noopener noreferrer",
     svg: (
