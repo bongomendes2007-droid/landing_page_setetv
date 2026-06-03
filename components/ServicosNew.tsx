@@ -159,7 +159,7 @@ export default function ServicosNew() {
           >
             Comunicação institucional, produção audiovisual e divulgação digital para{" "}
             <span style={{ color: "rgba(255,255,255,0.85)", fontWeight: 500 }}>
-              prefeituras, câmaras municipais e órgãos públicos
+              órgãos públicos e empresas privadas
             </span>{" "}
             de todo o Piauí.
           </motion.p>
