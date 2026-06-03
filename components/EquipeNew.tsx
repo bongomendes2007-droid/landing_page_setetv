@@ -72,13 +72,28 @@ export default function EquipeNew() {
           className="team-swiper">
           {team.map((m,i) => (
             <SwiperSlide key={i} style={{ width:260 }}>
-              <div style={{ borderRadius:18, overflow:"hidden", aspectRatio:"3/4",
+              <div style={{ borderRadius:18, overflow:"hidden",
                             border:"1px solid rgba(255,255,255,0.08)",
                             boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)",
-                            background:"#1a1a2e", padding:0, margin:0 }}>
-                <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
-                       objectFit:"cover", objectPosition:"center top", display:"block",
-                       padding:0, margin:0 }}/>
+                            background:"#1a1a2e",
+                            display:"flex", flexDirection:"column" }}>
+                <div style={{ aspectRatio:"3/4", overflow:"hidden", flexShrink:0 }}>
+                  <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
+                         objectFit:"cover", objectPosition:"center top", display:"block",
+                         padding:0, margin:0 }}/>
+                </div>
+                <div style={{ padding:"12px 16px 16px", minHeight:80,
+                              display:"flex", flexDirection:"column", gap:4 }}>
+                  <p style={{ fontSize:14, fontWeight:700, color:"#FFFFFF",
+                               textTransform:"uppercase", whiteSpace:"nowrap",
+                               overflow:"hidden", textOverflow:"ellipsis", margin:0 }}>
+                    {m.name}
+                  </p>
+                  <p style={{ fontSize:12, color:"rgba(255,255,255,0.7)",
+                               lineHeight:1.4, whiteSpace:"normal", margin:0 }}>
+                    {m.role}
+                  </p>
+                </div>
               </div>
             </SwiperSlide>
           ))}
