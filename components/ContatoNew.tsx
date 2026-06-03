@@ -57,7 +57,7 @@ export default function ContatoNew() {
                              color:"transparent", WebkitTextFillColor:"transparent", display:"block" }}>
                 trabalhar
               </span>
-              <span style={{ color:"rgba(255,255,255,0.2)", display:"block" }}>juntos?</span>
+              <span style={{ color:"#8B5CF6", display:"block" }}>juntos?</span>
             </h2>
             <p style={{ fontFamily:"Inter", fontSize:15, color:"rgba(255,255,255,0.45)",
                         maxWidth:340, lineHeight:1.65, marginBottom:36 }}>
