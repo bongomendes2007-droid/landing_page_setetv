@@ -75,9 +75,10 @@ export default function EquipeNew() {
               <div style={{ borderRadius:18, overflow:"hidden", aspectRatio:"3/4",
                             border:"1px solid rgba(255,255,255,0.08)",
                             boxShadow:"inset 0 2px 0 rgba(123,47,224,0.8)",
-                            background:"#0a0a0a" }}>
+                            background:"#1a1a2e", padding:0, margin:0 }}>
                 <img src={m.src} alt={m.name} style={{ width:"100%", height:"100%",
-                       objectFit:"contain", objectPosition:"center center", display:"block" }}/>
+                       objectFit:"cover", objectPosition:"center top", display:"block",
+                       padding:0, margin:0 }}/>
               </div>
             </SwiperSlide>
           ))}
